@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<unload unload_date="2016-02-29 12:47:27">
+<sys_remote_update_set action="INSERT_OR_UPDATE">
+<application display_value="Global">global</application>
+<application_name>Global</application_name>
+<application_scope>global</application_scope>
+<application_version/>
+<collisions/>
+<commit_date/>
+<deleted/>
+<description>Adds an UI action to export emails to .eml files. 
+
+When clicked, the UI action creates an .EML file in the sys_attachments table and then redirects to the attachments direct URL to download the file.
+
+Attachments of emails are not exported with the .EML fil.</description>
+<inserted/>
+<name>Export emails to EML file</name>
+<origin_sys_id/>
+<release_date/>
+<remote_sys_id>584ec8d24f31520084822ed18110c72f</remote_sys_id>
+<state>loaded</state>
+<summary/>
+<sys_created_by>admin</sys_created_by>
+<sys_created_on>2016-02-29 12:47:27</sys_created_on>
+<sys_id>ac8c8a3e4fb5520084822ed18110c780</sys_id>
+<sys_mod_count>0</sys_mod_count>
+<sys_updated_by>admin</sys_updated_by>
+<sys_updated_on>2016-02-29 12:47:27</sys_updated_on>
+<update_set display_value=""/>
+<update_source display_value=""/>
+<updated/>
+</sys_remote_update_set>
+<sys_update_xml action="INSERT_OR_UPDATE">
+<action>INSERT_OR_UPDATE</action>
+<application display_value="Global">global</application>
+<category>customer</category>
+<comments/>
+<name>sys_ui_action_8c47c3744fb1120084822ed18110c711</name>
+<payload>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;record_update sys_domain="global" table="sys_ui_action"&gt;&lt;sys_ui_action action="INSERT_OR_UPDATE"&gt;&lt;action_name/&gt;&lt;active&gt;true&lt;/active&gt;&lt;client&gt;false&lt;/client&gt;&lt;comments&gt;Exports an email to an .eml file. Attachments of emails are not exported to the .EML file.&lt;/comments&gt;&lt;condition/&gt;&lt;form_action&gt;true&lt;/form_action&gt;&lt;form_button&gt;false&lt;/form_button&gt;&lt;form_context_menu&gt;false&lt;/form_context_menu&gt;&lt;form_link&gt;true&lt;/form_link&gt;&lt;hint/&gt;&lt;list_action&gt;true&lt;/list_action&gt;&lt;list_banner_button&gt;false&lt;/list_banner_button&gt;&lt;list_button&gt;false&lt;/list_button&gt;&lt;list_choice&gt;false&lt;/list_choice&gt;&lt;list_context_menu&gt;true&lt;/list_context_menu&gt;&lt;list_link&gt;false&lt;/list_link&gt;&lt;list_save_with_form_button&gt;false&lt;/list_save_with_form_button&gt;&lt;name&gt;Export Email to EML&lt;/name&gt;&lt;onclick/&gt;&lt;order&gt;100&lt;/order&gt;&lt;script&gt;&lt;![CDATA[var emlAttachmentSysId = exportEmailToEML(current);
+action.setRedirectURL('sys_attachment.do?sys_id=' + emlAttachmentSysId);
+
+/**
+ * Generates the string content of the .EML file for a given email and creates the EML file as an attachment and returns its sys_id.
+ * @param {GlideRecord} sys_email_gr - A sys_email GlideRecord.
+ * @return {string} sys_id of the .EML file attachment in the sys_attachment table.
+ */
+function exportEmailToEML(sys_email_gr) {
+	var emlStr = '';
+	emlStr += 'To: ' + sys_email_gr.recipients + '\n';
+	emlStr += 'Subject: ' + sys_email_gr.subject + '\n';
+	emlStr += 'From: ' + gs.getProperty('instance_name') + '@service-now.com\n';
+	emlStr += 'Reply-To: ' + gs.getProperty('instance_name') + '@service-now.com\n';
+	emlStr += 'Content-Type: ' + sys_email_gr.content_type + '\n';
+	emlStr += 'Date: ' + generateEMLDate(sys_email_gr) + '\n';
+	emlStr += sys_email_gr.headers + '\n';
+	emlStr += '\n\n' + sys_email_gr.body;
+	return (new GlideSysAttachment()).write((new GlideRecord('sys_attachment')), sys_email_gr.subject + '.eml', 'text/plain', emlStr);
+}
+
+/**
+ * Constructs the date string for the EML file for a given email's sys_created_on date. (e.g. Sat, 30 Apr 2005 19:28:29 -0300).
+ * @param {GlideRecord} sys_email_gr - A sys_email GlideRecord.
+ * @return {string} The sys_created_on date of the email in the format required by the EML file.
+ */
+function generateEMLDate(sys_email_gr) {
+	var gdt = new GlideDateTime(sys_email_gr.sys_created_on);
+	var dayOfWeek = gdt.getDayOfWeekLocalTime().toString();
+	var dayOfMonthStr = gdt.getDayOfMonthLocalTime().toString();
+	var month = gdt.getMonthLocalTime();
+	var year = gdt.getYearLocalTime();
+	var localTimeStr = gdt.getLocalTime().toString();
+	var tzOffset = gdt.getTZOffset();
+	var tzOffsetHours = tzOffset/1000/60/60;
+	var tzOffsetHoursSign = (tzOffsetHours &lt; 0 ? "-" : "");
+	var tzOffsetHoursAbs = Math.abs(tzOffsetHours);
+	var tzOffsetHoursAbsStr = tzOffsetHoursAbs.toString();
+
+	var ALL_DAYS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+	var ALL_MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+	var emlDateStr = ALL_DAYS[dayOfWeek]
+	 + ", "
+	 + ("00".slice(dayOfMonthStr.length) + dayOfMonthStr) + " "
+	 + ALL_MONTHS[month - 1] + " "
+	 + year + " "
+	 + localTimeStr.slice(11) + " "
+	 + tzOffsetHoursSign
+	 + ("00".slice(tzOffsetHoursAbsStr.length) + tzOffsetHoursAbsStr) + "00";
+
+	return emlDateStr;
+}
+]]&gt;&lt;/script&gt;&lt;show_insert&gt;true&lt;/show_insert&gt;&lt;show_multiple_update&gt;false&lt;/show_multiple_update&gt;&lt;show_query&gt;false&lt;/show_query&gt;&lt;show_update&gt;true&lt;/show_update&gt;&lt;sys_class_name&gt;sys_ui_action&lt;/sys_class_name&gt;&lt;sys_created_by&gt;admin&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2016-02-23 11:56:46&lt;/sys_created_on&gt;&lt;sys_customer_update&gt;true&lt;/sys_customer_update&gt;&lt;sys_domain&gt;global&lt;/sys_domain&gt;&lt;sys_domain_path&gt;/&lt;/sys_domain_path&gt;&lt;sys_id&gt;8c47c3744fb1120084822ed18110c711&lt;/sys_id&gt;&lt;sys_mod_count&gt;11&lt;/sys_mod_count&gt;&lt;sys_name&gt;Export Email to EML&lt;/sys_name&gt;&lt;sys_overrides/&gt;&lt;sys_package display_value="Global" source="global"&gt;global&lt;/sys_package&gt;&lt;sys_policy/&gt;&lt;sys_replace_on_upgrade&gt;false&lt;/sys_replace_on_upgrade&gt;&lt;sys_scope display_value="Global"&gt;global&lt;/sys_scope&gt;&lt;sys_update_name&gt;sys_ui_action_8c47c3744fb1120084822ed18110c711&lt;/sys_update_name&gt;&lt;sys_updated_by&gt;admin&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2016-02-29 12:36:02&lt;/sys_updated_on&gt;&lt;table&gt;sys_email&lt;/table&gt;&lt;/sys_ui_action&gt;&lt;/record_update&gt;</payload>
+<remote_update_set display_value="Export emails to EML file">ac8c8a3e4fb5520084822ed18110c780</remote_update_set>
+<replace_on_upgrade>false</replace_on_upgrade>
+<sys_created_by>admin</sys_created_by>
+<sys_created_on>2016-02-29 12:47:27</sys_created_on>
+<sys_id>ec8c8a3e4fb5520084822ed18110c780</sys_id>
+<sys_mod_count>0</sys_mod_count>
+<sys_updated_by>admin</sys_updated_by>
+<sys_updated_on>2016-02-29 12:47:27</sys_updated_on>
+<table>sys_email</table>
+<target_name>Export Email to EML</target_name>
+<type>UI Action</type>
+<update_domain>global</update_domain>
+<update_set display_value=""/>
+<view/>
+</sys_update_xml>
+</unload>
