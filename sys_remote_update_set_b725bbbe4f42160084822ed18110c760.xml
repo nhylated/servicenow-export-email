@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<unload unload_date="2016-03-12 15:02:41">
+<unload unload_date="2016-03-13 06:40:29">
 <sys_remote_update_set action="INSERT_OR_UPDATE">
 <application display_value="Global">global</application>
 <application_name>Global</application_name>
@@ -24,11 +24,11 @@ Attachments of emails are not exported with the .EML fil.</description>
 <state>loaded</state>
 <summary/>
 <sys_created_by>admin</sys_created_by>
-<sys_created_on>2016-03-12 15:02:40</sys_created_on>
-<sys_id>628e18fa4fced20084822ed18110c78b</sys_id>
+<sys_created_on>2016-03-13 06:40:28</sys_created_on>
+<sys_id>b725bbbe4f42160084822ed18110c760</sys_id>
 <sys_mod_count>0</sys_mod_count>
 <sys_updated_by>admin</sys_updated_by>
-<sys_updated_on>2016-03-12 15:02:40</sys_updated_on>
+<sys_updated_on>2016-03-13 06:40:28</sys_updated_on>
 <update_set display_value=""/>
 <update_source display_value=""/>
 <updated/>
@@ -39,7 +39,7 @@ Attachments of emails are not exported with the .EML fil.</description>
 <category>customer</category>
 <comments/>
 <name>sys_ui_action_8c47c3744fb1120084822ed18110c711</name>
-<payload>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;record_update sys_domain="global" table="sys_ui_action"&gt;&lt;sys_ui_action action="INSERT_OR_UPDATE"&gt;&lt;action_name/&gt;&lt;active&gt;true&lt;/active&gt;&lt;client&gt;false&lt;/client&gt;&lt;comments&gt;Exports an email to an .eml file. Attachments of emails are not exported to the .EML file.&lt;/comments&gt;&lt;condition/&gt;&lt;form_action&gt;true&lt;/form_action&gt;&lt;form_button&gt;false&lt;/form_button&gt;&lt;form_context_menu&gt;false&lt;/form_context_menu&gt;&lt;form_link&gt;true&lt;/form_link&gt;&lt;hint/&gt;&lt;list_action&gt;true&lt;/list_action&gt;&lt;list_banner_button&gt;false&lt;/list_banner_button&gt;&lt;list_button&gt;false&lt;/list_button&gt;&lt;list_choice&gt;false&lt;/list_choice&gt;&lt;list_context_menu&gt;true&lt;/list_context_menu&gt;&lt;list_link&gt;false&lt;/list_link&gt;&lt;list_save_with_form_button&gt;false&lt;/list_save_with_form_button&gt;&lt;name&gt;Export Email to EML&lt;/name&gt;&lt;onclick/&gt;&lt;order&gt;100&lt;/order&gt;&lt;script&gt;&lt;![CDATA[/**
+<payload>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;record_update sys_domain="global" table="sys_ui_action"&gt;&lt;sys_ui_action action="INSERT_OR_UPDATE"&gt;&lt;action_name/&gt;&lt;active&gt;true&lt;/active&gt;&lt;client&gt;false&lt;/client&gt;&lt;comments&gt;Exports an email to an .eml file. Attachments of emails are not exported to the .EML file.&lt;/comments&gt;&lt;condition/&gt;&lt;form_action&gt;true&lt;/form_action&gt;&lt;form_button&gt;false&lt;/form_button&gt;&lt;form_context_menu&gt;false&lt;/form_context_menu&gt;&lt;form_link&gt;true&lt;/form_link&gt;&lt;hint/&gt;&lt;list_action&gt;true&lt;/list_action&gt;&lt;list_banner_button&gt;false&lt;/list_banner_button&gt;&lt;list_button&gt;false&lt;/list_button&gt;&lt;list_choice&gt;false&lt;/list_choice&gt;&lt;list_context_menu&gt;true&lt;/list_context_menu&gt;&lt;list_link&gt;false&lt;/list_link&gt;&lt;list_save_with_form_button&gt;false&lt;/list_save_with_form_button&gt;&lt;name&gt;Export Email to EML&lt;/name&gt;&lt;onclick/&gt;&lt;order&gt;110&lt;/order&gt;&lt;script&gt;&lt;![CDATA[/**
  * Author/source: https://github.com/nhylated/servicenow-export-email
  * License: MIT license
  */
@@ -168,15 +168,15 @@ function processEmailAttachmentsForEML(sys_email_gr, boundaryStr) {
 
     return attachmentStrForEml;
 }
-]]&gt;&lt;/script&gt;&lt;show_insert&gt;true&lt;/show_insert&gt;&lt;show_multiple_update&gt;false&lt;/show_multiple_update&gt;&lt;show_query&gt;false&lt;/show_query&gt;&lt;show_update&gt;true&lt;/show_update&gt;&lt;sys_class_name&gt;sys_ui_action&lt;/sys_class_name&gt;&lt;sys_created_by&gt;admin&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2016-02-23 11:56:46&lt;/sys_created_on&gt;&lt;sys_customer_update&gt;true&lt;/sys_customer_update&gt;&lt;sys_domain&gt;global&lt;/sys_domain&gt;&lt;sys_domain_path&gt;/&lt;/sys_domain_path&gt;&lt;sys_id&gt;8c47c3744fb1120084822ed18110c711&lt;/sys_id&gt;&lt;sys_mod_count&gt;12&lt;/sys_mod_count&gt;&lt;sys_name&gt;Export Email to EML&lt;/sys_name&gt;&lt;sys_overrides/&gt;&lt;sys_package display_value="Global" source="global"&gt;global&lt;/sys_package&gt;&lt;sys_policy/&gt;&lt;sys_replace_on_upgrade&gt;false&lt;/sys_replace_on_upgrade&gt;&lt;sys_scope display_value="Global"&gt;global&lt;/sys_scope&gt;&lt;sys_update_name&gt;sys_ui_action_8c47c3744fb1120084822ed18110c711&lt;/sys_update_name&gt;&lt;sys_updated_by&gt;admin&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2016-03-12 15:01:57&lt;/sys_updated_on&gt;&lt;table&gt;sys_email&lt;/table&gt;&lt;/sys_ui_action&gt;&lt;/record_update&gt;</payload>
-<remote_update_set display_value="Export emails to EML file">628e18fa4fced20084822ed18110c78b</remote_update_set>
+]]&gt;&lt;/script&gt;&lt;show_insert&gt;true&lt;/show_insert&gt;&lt;show_multiple_update&gt;false&lt;/show_multiple_update&gt;&lt;show_query&gt;false&lt;/show_query&gt;&lt;show_update&gt;true&lt;/show_update&gt;&lt;sys_class_name&gt;sys_ui_action&lt;/sys_class_name&gt;&lt;sys_created_by&gt;admin&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2016-02-23 11:56:46&lt;/sys_created_on&gt;&lt;sys_customer_update&gt;true&lt;/sys_customer_update&gt;&lt;sys_domain&gt;global&lt;/sys_domain&gt;&lt;sys_domain_path&gt;/&lt;/sys_domain_path&gt;&lt;sys_id&gt;8c47c3744fb1120084822ed18110c711&lt;/sys_id&gt;&lt;sys_mod_count&gt;13&lt;/sys_mod_count&gt;&lt;sys_name&gt;Export Email to EML&lt;/sys_name&gt;&lt;sys_overrides/&gt;&lt;sys_package display_value="Global" source="global"&gt;global&lt;/sys_package&gt;&lt;sys_policy/&gt;&lt;sys_replace_on_upgrade&gt;false&lt;/sys_replace_on_upgrade&gt;&lt;sys_scope display_value="Global"&gt;global&lt;/sys_scope&gt;&lt;sys_update_name&gt;sys_ui_action_8c47c3744fb1120084822ed18110c711&lt;/sys_update_name&gt;&lt;sys_updated_by&gt;admin&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2016-03-13 06:33:45&lt;/sys_updated_on&gt;&lt;table&gt;sys_email&lt;/table&gt;&lt;/sys_ui_action&gt;&lt;/record_update&gt;</payload>
+<remote_update_set display_value="Export emails to EML file">b725bbbe4f42160084822ed18110c760</remote_update_set>
 <replace_on_upgrade>false</replace_on_upgrade>
 <sys_created_by>admin</sys_created_by>
-<sys_created_on>2016-03-12 15:02:40</sys_created_on>
-<sys_id>a28e18fa4fced20084822ed18110c78b</sys_id>
+<sys_created_on>2016-03-13 06:40:28</sys_created_on>
+<sys_id>f725bbbe4f42160084822ed18110c760</sys_id>
 <sys_mod_count>0</sys_mod_count>
 <sys_updated_by>admin</sys_updated_by>
-<sys_updated_on>2016-03-12 15:02:40</sys_updated_on>
+<sys_updated_on>2016-03-13 06:40:28</sys_updated_on>
 <table>sys_email</table>
 <target_name>Export Email to EML</target_name>
 <type>UI Action</type>
